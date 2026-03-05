@@ -1,0 +1,763 @@
+@font-face {
+  font-family: 'BlitzBold';
+  src: url('../fonts/BlitzBold.otf') format('opentype');
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  text-decoration: none;
+  color: inherit;
+  font-family: 'BlitzBold', sans-serif;
+}
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+/*                                                                      HEADER                                                                */
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+#header {
+  background-image: url(../img/header_pattern.png);
+  text-align: center;
+  display: flex; /* flexbox pour aligner les éléments */
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+/* Forceur d'anti text-decoration */
+#header a {
+  color: white;
+  text-decoration: none;
+}
+
+.header-titre {
+  margin-left: 30px;
+}
+
+.header-titre h3 {
+  font-size: 40px;
+}
+
+.header-ctn {
+  display: inline-block; /* Afficher en ligne */
+}
+
+.panier-btn {
+  margin-right: 30px;
+}
+
+.panier-btn img {
+  width: 50px; height: auto;
+}
+
+#categories {
+  background-color: #f8f9fa;
+  padding: 10px 0;
+  text-align: center;
+}
+
+#categories .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#categories a {
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+  margin: 0 5px;
+}
+
+.formulaire {
+  display: inline-block;
+  position: relative;
+}
+
+#search {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #f8f9fa;
+  color: #333;
+  width: 400px;
+  font-size: 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+#search:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+/*                                                                      DROPDOWN COMPTE + Modals                                              */
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  text-decoration: none;
+  padding: 10px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 100px;
+  z-index: 1;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  border-bottom: 1px solid white;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.modal-content {
+  background-image: url('../img/pattern_popup.png');
+  background-size: cover;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 400px;
+  align-items: center;
+  color: white;
+}
+
+.boite-input {
+  border-radius: 30px; /* Arrondi les bords */
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  width: calc(100% - 40px);
+  border: 1px solid #ccc;
+  color: #666;
+}
+
+.bouton-principal {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+
+.bouton-principal:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+/*                                                                      BODY                                                                  */
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+/* Le background image est dans une classe spéciale et non dans produits-container car on veut une transition vers le footer propre. */
+.body-background {
+  background-image: url('../img/background_body.png');
+  background-size: cover; /* Redimensionne l'image pour cover toute la zone visible */
+  background-repeat: repeat;
+}
+
+
+.populaire {
+  background-image: url(../img/header_pattern.png);
+  background-size: contain;
+}
+
+.populaire_titre, .boutique {
+  background-image: url(../img/label_ink.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  font-size: 3vw;
+  color: white;
+}
+
+.populaire_titre {
+  background-size: 60%;
+}
+
+.boutique {
+  background-size: 30%;
+}
+
+
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+/*                                                                      PRODUITS                                                              */
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+.produits-container, .populaires_produits {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 5px;
+  justify-items: center;
+  margin-top: 40px;
+}
+
+.produit {
+  background-image: url(../img/pattern.png);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  height: auto;
+  margin-bottom: 50px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* produit-img est utilisé sur toutes les pages qui utilisent une grid de produits. Par exemple, body.php*/
+.produit-img img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px; 
+  margin-top: 20px;
+}
+
+.produit-body {
+  padding: 10px;
+  color: white;
+}
+
+.produit-categorie {
+  font-size: 18px;
+  color: white;
+  margin: 0;
+  max-height: fit-content;
+  overflow: hidden;
+}
+
+.produit-name a {
+  font-size: 25px;
+  height: 50px;
+}
+
+
+.oeufs-img {
+  width: 60px;
+  height: auto;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+.produit-price {
+  font-size: 25px;
+  color: orange;
+  margin-bottom: 20px;
+}
+
+.add-to-panier-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transition de couleur quand on le hover */
+  margin-bottom: 10px;
+}
+
+.add-to-panier-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Utilisé sur produit.php */
+.description-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  margin-top: 40px;
+  gap: 20px;
+  text-align: center;
+}
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+/*                                                                     produit PAGE                                                           */
+/*        Le css présent ici est utilisé sur produit.php, qui est la page affichant un seul produit. les règles sont donc différentes.        */
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+
+.produit-img-desc {
+  background-image: url(../img/pattern.png);
+  width: 55vw;
+  border-radius: 15px;
+  height: 850px;
+  margin-bottom: 100px;
+  overflow: hidden;
+  object-fit: content;
+  place-self: center;
+}
+
+.produit-img-desc img {
+  padding-bottom: 200px;
+  width: 50vw;
+  height: auto;
+}
+
+.produit-body-desc {
+  background-image: url(../img/pattern.png);
+  color: white;
+  width: 25vw;
+  border-radius: 15px;
+  height: 600px;
+  margin-bottom: 10px;
+  place-self: center;
+}
+
+.produit-name-desc {
+  font-size: 2.3vw;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.produit-categorie-desc {
+  background-image: url(../img/label.png);
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-size: 1.5vw;
+}
+
+.produit-body-desc ul {
+  margin-left: 10px;
+  margin-left: 10px;
+}
+.produit-body-desc li {
+  font-size: 23px;
+}
+
+.produit-price-desc {
+  font-size: 40px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.produit-img-desc, .produit-body-desc {
+  margin-bottom: 50px;
+}
+
+.espace_commentaires {
+  background-image: url(../img/pattern.png);
+  grid-column: 1 / -1;
+  width: 90%;
+  margin: auto;
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  padding-bottom: 30px;
+}
+
+.titre_commentaire {
+  background-image: url(../img/label_ink.png);
+  background-size: auto 200%;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-size: 1.5vw;
+  color: white;
+}
+
+.chaque_commentaire {
+  width: 80%;
+  margin: auto;
+  background-color: #aaa;
+  border-radius: 15px;
+  border-width: 50px;
+  border-color: #666;
+}
+
+.chaque_commentaire img {
+  max-width: 20vw;
+  height: auto;
+}
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+/*                                                                     PROFIL                                                                 */
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+.profil_titre {
+  text-align: center;
+  color: whitesmoke;
+  background-image: url(../img/label_ink.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 0%;
+  font-size: 5vw;
+  overflow: visible;
+}
+
+.profil {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.nametag {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-image: url(../img/pattern.png);
+  background-size: cover;
+  margin: 30px;
+  border-radius: 15px;
+}
+
+.profil_pseudo, .profil_nom, .profil_email, .profil_mobile, .profil_adresse{
+  text-align: center;
+  font-size: 1.5vw;
+  color: salmon;
+  background-image: url(../img/label.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+  
+.historique {
+  display: grid;
+  grid-template-columns: repeat(minmax(20%, 1fr));
+  background-image: url(../img/header_pattern.png);
+  background-size: cover;
+  gap: 20px;
+  margin: 30px;
+  border-radius: 15px;
+}
+
+.historique_achat {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 5px;
+  justify-items: center;
+  margin-top: 40px;
+}
+
+.historique_vente {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 5px;
+  justify-items: center;
+  margin-top: 40px;
+}
+
+.hist_achat_titre, .hist_vente_titre {
+  background-image: url(../img/pattern.png);
+  color: white;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 1.5vw;
+  margin: 10px;
+}
+
+.no_profil {
+  width: 85vw;
+  height: 105vh;
+  margin: 4vw auto;
+  font-size: 4vw;
+  text-align: center;
+  background-image: url('../img/warning.png');
+  background-size: contain;
+  border-radius: 50px;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+/*                                                                     PANIER                                                                 */
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+
+.panier {
+  background-image: url(../img/pattern.png);
+  margin: auto 10vw;
+  border-radius: 15px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.panier_titre {
+  background-image: url(../img/label_ink.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  font-size: 3vw;
+  color: white;
+}
+
+.panier_produit {
+  background-image: url(../img/header_pattern.png);
+  border-radius: 15px;
+  padding-left: 3%;
+  color: white;
+  font-size: 1.4vw;
+  min-height: 100px;
+}
+
+.panier_produit_sub {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding-top: 25px;
+}
+
+.remove-from-panier-btn {
+  background-color: #ff4949;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+
+.remove-from-panier-btn:hover {
+  background-color: #792929;
+}
+
+.pey-btn {
+  margin-right: 30px;
+}
+
+.pay-btn img {
+  position: relative;
+  top: 10px;
+  width: 100px; 
+  height: auto;
+  border-radius: 15px
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+/*                                                                  TRANSACTION                                                               */
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+
+.transaction {
+  background-image: url(../img/pattern.png);
+  padding: 30px;
+  margin: 100px;
+  border-radius: 15px;
+}
+
+.transaction_info {
+  color: white;
+  font-size: 4vw;
+  text-align: center;
+  justify-content: center;
+  background-image: url(../img/header_pattern.png);
+  border-radius: 15px;
+}
+
+.transaction_info img {
+  border-radius: 15px;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+/*                                                                  PUBLICATION                                                               */
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+
+.publication {
+  color: white;
+  text-align: center;
+  font-size: 1.2vw;
+}
+
+.publication input[type="text"], .publication textarea, .publication select {
+  color: black;
+}
+
+/* Le dropdown */
+.publication select option {
+  color: black;
+}
+
+.publication input[type="submit"],
+.publication .button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.publication input[type="submit"]:hover,
+.publication .button:hover {
+  background-color: #0056b3;
+}
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+/*                                                                     LISTE DE SOUHAITS                                                      */
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+
+.liste-de-souhaits {
+  text-align: center;
+  padding: 20px;
+}
+
+.liste-de-souhaits-header {
+  margin-bottom: 20px;
+}
+
+.liste-de-souhaits-header h1 {
+  background-size: cover;
+  display: inline-block;
+  padding: 10px 20px;
+  color: white;
+}
+
+.liste-de-souhaits-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.btn-add-to-wishlist {
+  display: block;
+  margin-top: 20px;
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn-add-to-wishlist:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+/*                                                                     FOOTER                                                                 */
+/* ------------------------------------------------------------------------------------------------------------------------------------------ */
+
+.background-footer {
+  background-image: url(../img/footer.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 200px;
+  padding-top: 20%;
+}
+
+.creator {
+  font-size: 50px;
+  text-align: center;
+  color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* CSS qui est shared*/
+.red-btn {
+  background-color: red;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Transition de couleur quand on le hover */
+  margin-bottom: 10px;
+}
+
+.red-btn:hover {
+  background-color: #0056b3;
+}
